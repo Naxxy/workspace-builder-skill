@@ -189,6 +189,9 @@ skills-column: yes                   — routing table includes Skills column
 progress-update-rule: yes            — CLAUDE.md Rules includes proactive PROGRESS.md update
 trace-mode: yes                      — Mode 5 (Trace) available
 preflight-tool: yes                  — skill/tools/preflight.sh available
+engineering-standards: yes           — skill/engineering-standards.md present
+tool-decision: yes                   — skill/tools/tool-decision.md present
+bash-style: yes                      — skill/tools/bash-style.md present
 ```
 
 (This file is a record, not a configuration. Future reviews use it to flag improvements added after this workspace was generated.)

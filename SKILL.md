@@ -31,9 +31,7 @@ skill/update-protocol.md         Mode 3: change procedure and update type map
 skill/trace-protocol.md          Mode 5: pipeline trace procedure
 skill/templates/                 Generation templates (Mode 1 primary; REFERENCES.md.template also used in Mode 3)
 skill/examples/                  Reference workspace (consult on demand)
-skill/tools/                     Shell scripts for mechanical tasks
-skill/tools/bash-style.md        Bash style guide for scripts in this skill
-skill/tools/tool-decision.md     When to write a script vs. leave as Claude guidance
+skill/tools/                     Shell scripts and tooling guides (bash-style.md, tool-decision.md)
 ```
 
 ---
