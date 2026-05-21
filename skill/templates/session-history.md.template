@@ -12,7 +12,7 @@ next: "[what happens in the next session]"
 
 <!--
   YAML frontmatter is machine-readable — used by Mode 4 to detect recurring correction patterns.
-  Keep 'corrections' accurate: these are the source of the 3.2 pattern detection.
+  Keep 'corrections' accurate: these feed AP-12 (anti-patterns.md).
 
   Correction types:
     tone        — register, level of hedging, voice
