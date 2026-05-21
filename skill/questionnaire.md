@@ -172,32 +172,7 @@ Generate the workspace in this order:
    - If the user gave a brief description, draft from it and mark any sections that need more detail with `[TO EXPAND]`.
 7. `PROGRESS.md` at root (use `skill/templates/PROGRESS.md.template`)
 8. `setup/questionnaire-answers.md` with the interview answers recorded
-9. `setup/session-prompts.md` with this exact content:
-
-```markdown
-# Session Prompts
-
-Copy these at the start and end of each Claude Code session.
-
-## Session start
-If `skill/tools/reconcile-progress.sh` is accessible, run it first:
-`bash skill/tools/reconcile-progress.sh`
-It compares the actual output/ directories against stage contracts and PROGRESS.md,
-and prints any discrepancies with a recommended state.
-
-If the script is not accessible: read CLAUDE.md and PROGRESS.md, then check each
-stage's output/ directory against its CONTEXT.md Outputs section. If actual state
-doesn't match what PROGRESS.md records, describe the discrepancy and reconcile
-before asking what to do next.
-
-## Session end
-Create session-history/YYYY-MM-DD.md using skill/templates/session-history.md.template.
-Record what was completed, any corrections made to stage outputs (these feed pattern detection),
-decisions, and what's next. Then update PROGRESS.md Current Status and Active stage.
-
-## Before stepping away
-Update PROGRESS.md Current Status in case this session ends unexpectedly.
-```
+9. `setup/session-prompts.md` — copy `skill/templates/session-prompts.md.template`
 
 10. `setup/skill-version.md` — read the Skill build date from `SKILL.md` and generate:
 
