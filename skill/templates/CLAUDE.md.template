@@ -1,0 +1,90 @@
+# [Workspace Name]
+
+## Identity
+
+You are [Claude's identity] helping [person's name], a [role], [purpose or context].
+
+<!--
+  [Claude's identity]  — who Claude IS in this workspace. Expertise, voice, or named persona.
+                         e.g. "a content creation and animation expert"
+                              "a senior research analyst"
+                              "Alex Hormozi" (named persona — shapes voice and decision-making)
+                         From questionnaire Group A Q3.
+
+  [person's name]      — the real name of the person being helped. Not a role category.
+                         From questionnaire Group A Q1.
+
+  [role]               — what the person does: "content creator", "research analyst", "consultant"
+                         From questionnaire Group A Q2.
+
+  [purpose or context] — what the workspace produces, as a verb phrase.
+                         e.g. "produce animated explainer videos from topic research through production"
+                         From questionnaire Group A Q4.
+
+  This is CLAUDE.md — Layer 0 of the ICM hierarchy.
+  Its job: tell Claude where it is, what the workspace contains, and where to go for each task.
+  Keep the file under 50 lines. Project detail goes in CONTEXT.md. Stage detail goes in stage CONTEXT.md files.
+-->
+
+---
+
+## Folder Structure
+
+- `stages/01_[name]/` — [one-line description of what this stage does]
+- `stages/02_[name]/` — [one-line description]
+- `stages/03_[name]/` — [one-line description]
+- `_config/` — Shared reference material (voice guide, conventions, domain knowledge)
+- `setup/` — Workspace configuration and answered questionnaire
+
+<!--
+  Add or remove stage lines to match your actual structure.
+  One line per folder. Keep descriptions to one line.
+-->
+
+---
+
+## Routing
+
+| Task | Go to | Read | Skills |
+|------|-------|------|--------|
+| [task type, e.g. "Research a topic"] | `stages/01_[name]/` | `CONTEXT.md` | — |
+| [task type, e.g. "Write a script"] | `stages/02_[name]/` | `CONTEXT.md` | — |
+| [task type, e.g. "Produce output"] | `stages/03_[name]/` | `CONTEXT.md` | — |
+
+<!--
+  One row per task type. Every stage folder must have at least one row.
+  Paths in "Go to" must match actual folder names exactly.
+  "Skills" column: name any skill files to load for this stage, or leave as —
+-->
+
+---
+
+## Naming Conventions
+
+- [Output file type, e.g. "Stage outputs"]: `[pattern, e.g. topic-name_draft.md]`
+- [Other file type if needed]: `[pattern]`
+
+<!--
+  Define at least one naming pattern for output files.
+  The pattern should make the file's content and status identifiable without opening it.
+  Examples:
+    topic-name_draft.md
+    YYYY-MM-DD-topic.md
+    topic_v1.md
+-->
+
+---
+
+## Rules
+
+- Read this file and the relevant stage CONTEXT.md before starting any task
+- Update PROGRESS.md at task completions, blockers, and stage transitions; create session-history/YYYY-MM-DD.md at session end
+- Write all output to the stage's `output/` directory — ask before creating files elsewhere
+- Never modify files in `references/` or `_config/` during a pipeline run
+- [User-defined rule — maximum 5 rules total]
+
+<!--
+  Keep rules focused on routing and structural behaviour.
+  Rules about tone, writing style, or output quality belong in CONTEXT.md or stage CONTEXT.md.
+  Maximum 5 rules total. The four lines above count toward this limit.
+-->

@@ -1,0 +1,70 @@
+# [Stage Name]
+
+<!--
+  STAGE CONTRACT — fill all three sections before this stage runs.
+  Leave no section blank or with placeholder text.
+  This file is Layer 2 in the ICM hierarchy: it defines exactly what this
+  stage reads, does, and produces. The next stage's inputs depend on this.
+-->
+
+Last updated: [YYYY-MM-DD]
+
+---
+
+## Inputs
+
+### Layer 4 — Working artifacts (per-run, changes each run)
+
+- `[../NN_previous-stage/output/filename.md]` — [one sentence: what this file contains and why this stage needs it]
+
+<!--
+  If this is the first stage, Layer 4 input is the user-provided source material.
+  Specify what the user should place here before running this stage.
+  Example: "User provides: a topic brief or research prompt in this stage's output/ folder."
+-->
+
+### Layer 3 — Reference material (stable, same every run)
+
+- `[../../_config/voice.md]` — [one sentence: what this file defines and how this stage uses it]
+- `[references/filename.md]` — [one sentence: what this file defines and how this stage uses it]
+
+<!--
+  Remove this section if the stage has no Layer 3 reference material.
+  Add one line per file. Do not list entire directories — name the specific files.
+-->
+
+---
+
+## Process
+
+[Write the instructions for this stage here. This is what Claude reads to understand what to do.
+
+Write in plain declarative sentences directed at Claude. Describe:
+- What this stage is trying to produce and why
+- How to use the Layer 4 input (what to extract, transform, or build from it)
+- How the Layer 3 reference material constrains the output (follow these conventions, match this tone, use this structure)
+- Any stage-specific rules or constraints (e.g. "keep output under 500 words", "produce exactly three options", "do not invent data")
+- What the human will review and what kind of judgment they will apply — this helps Claude understand what "good enough" means at this stage
+
+Do not write Claude's personality here. Write the work.
+Minimum: 3 sentences. Sufficient: a short paragraph per major instruction.
+Remove this comment block when writing the real content.]
+
+---
+
+## Outputs
+
+- `[output-filename.md]` → `output/`
+
+<!--
+  One line per output file. Format: `filename` → `destination/`
+  The filename here must match exactly what the next stage expects in its Layer 4 Inputs.
+
+  Naming convention: follow the pattern defined in the root CLAUDE.md.
+
+  If this stage produces more than one output file, list each on its own line.
+
+  To compare output before and after improving this stage contract:
+    bash skill/tools/diff-stage.sh [this-stage-path] --archive   (before re-running)
+    bash skill/tools/diff-stage.sh [this-stage-path]             (after re-running)
+-->

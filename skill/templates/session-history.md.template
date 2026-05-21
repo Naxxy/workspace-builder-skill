@@ -1,0 +1,48 @@
+---
+date: YYYY-MM-DD
+stages_active:
+  - [stage-name]
+completed: true
+corrections:
+  - stage: [stage-name]
+    type: [tone|structure|content|length|accuracy|constraint|format]
+    description: "[what was changed and why]"
+next: "[what happens in the next session]"
+---
+
+<!--
+  YAML frontmatter is machine-readable — used by Mode 4 to detect recurring correction patterns.
+  Keep 'corrections' accurate: these are the source of the 3.2 pattern detection.
+
+  Correction types:
+    tone        — register, level of hedging, voice
+    structure   — section ordering, where things appear
+    content     — added or removed information
+    length      — output was too long or too short
+    accuracy    — factual corrections
+    constraint  — stage didn't follow a rule stated in its contract or reference files
+    format      — headings, lists, code blocks, formatting conventions
+
+  If no corrections were made this session, use: corrections: []
+
+  Filename: session-history/YYYY-MM-DD.md
+  If two sessions occur on the same day: session-history/YYYY-MM-DD-2.md
+-->
+
+## Session: YYYY-MM-DD
+
+**Completed:**
+- [What got done this session]
+
+**Corrections to stage outputs:**
+- [stage-name]: [what was changed] — [why]
+- (none — all outputs accepted without correction)
+
+**Decisions made this session:**
+- [Decision] — [brief reasoning]
+
+**Blocked:**
+- [What is stuck and why — or "Nothing blocked"]
+
+**Next session:**
+- [What should happen next]

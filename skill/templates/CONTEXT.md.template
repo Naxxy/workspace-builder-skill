@@ -1,0 +1,56 @@
+# [Workspace Name] — Context
+
+<!--
+  This is CONTEXT.md — Layer 1 of the ICM hierarchy.
+  Its job: tell Claude what this workspace is for, what good output looks like,
+  and what to avoid. This is where project detail lives — not in CLAUDE.md.
+
+  Keep this under one page. Update it when the project changes.
+-->
+
+Last updated: [YYYY-MM-DD]
+
+---
+
+## What we are building
+
+[2–3 sentences. What is this workspace for? What problem does it solve?
+Who is the end user or audience for the work produced here?
+What does a complete run of this workspace produce?]
+
+---
+
+## What good looks like
+
+[Describe the characteristics of a successful output from this workspace.
+Be specific — not "high quality content" but "a research document that
+identifies 3–5 key angles, each with at least one concrete source, structured
+so the script stage can build from it directly."
+
+Think about: what would make the output immediately usable? What would
+make you trust it without having to rewrite it?]
+
+---
+
+## What to avoid
+
+[List the things that consistently go wrong or that would make the output
+unusable. Be concrete — not "avoid being vague" but "do not invent data,
+do not include more than one opinion per section, do not exceed 800 words."
+
+Think about: what are the last three things you had to correct? Those are constraints.]
+
+---
+
+## Current focus
+
+[What stage is currently active? What is the current run or project?
+Update this when you move to a new stage or start a new run.
+
+Example: "Currently in 02_script. Research output for 'AI in education' topic is
+in 01_research/output/ and ready for scripting."]
+
+<!--
+  This section is the one most worth keeping current. It is the fastest
+  way for Claude to orient itself at the start of a new session.
+-->

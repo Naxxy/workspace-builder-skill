@@ -1,0 +1,73 @@
+# References — [Stage Name or _config]
+
+<!--
+  This is a Layer 3 reference file — stable factory configuration.
+  It persists across every run. Claude reads it as constraints and conventions,
+  not as material to transform.
+
+  Use this template for:
+  - _config/ files (shared across all stages)
+  - stages/NN_name/references/ files (specific to one stage)
+
+  This file should not change during a pipeline run.
+  If something produced during a run belongs here, update it deliberately
+  between runs — not automatically.
+-->
+
+Last updated: [YYYY-MM-DD]
+
+---
+
+## Purpose
+
+[One sentence: what does this reference file define? What does it constrain?
+Example: "This file defines the voice and tone conventions for all written output."
+Example: "This file contains structural requirements for the 02_script stage."]
+
+---
+
+## [Section heading matching the content — examples below]
+
+<!--
+  Replace the section headings below with headings that match your content.
+  Common patterns:
+
+  For a voice guide:
+  ## Voice and tone
+  ## Sentence-level conventions
+  ## What to avoid
+
+  For a structural template:
+  ## Required sections
+  ## Format rules
+  ## Examples
+
+  For domain knowledge:
+  ## Key concepts
+  ## Established facts
+  ## Sources and links
+
+  For visual/design conventions:
+  ## Colour palette
+  ## Typography rules
+  ## Layout principles
+-->
+
+[Content here]
+
+---
+
+## Examples of good work
+
+[Optional. Paste one or two examples that demonstrate what this reference file
+is instructing Claude to produce or follow. Concrete examples are more effective
+than abstract rules.
+
+If examples are too long for this file, note where they can be found:
+"See examples/good-script.md for a full example."]
+
+---
+
+## Notes
+
+[Anything else relevant that doesn't fit the above sections. Keep brief.]

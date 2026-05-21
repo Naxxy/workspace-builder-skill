@@ -1,0 +1,59 @@
+# Progress
+
+<!--
+  Active state only. Full session history lives in session-history/YYYY-MM-DD.md files.
+  This file should remain short — one glance tells you where the workspace stands.
+
+  If a session was interrupted, actual state lives in the stage output/ directories.
+  Use the session-start prompt from setup/session-prompts.md to reconcile.
+
+  Update this file during the session at natural transition points:
+  - Task or stage completed  → update Current Status and Active stage
+  - Blocker encountered      → add to Blocked with reason
+  - Moving to a new stage    → update Active stage
+
+  At session end: create session-history/YYYY-MM-DD.md using the template at
+  skill/templates/session-history.md.template, then update Current Status here.
+
+  Prompt templates (see setup/session-prompts.md for copy-paste versions):
+  - Session start:  Run skill/tools/reconcile-progress.sh if accessible.
+                    Otherwise: read CLAUDE.md and PROGRESS.md, check output/ vs contracts.
+  - Session end:    Create session-history/YYYY-MM-DD.md, then update Current Status here.
+  - Before leaving: Update Current Status in case this session ends unexpectedly.
+-->
+
+---
+
+## Current status
+
+[One sentence: what is the current state of the workspace right now?
+Example: "02_script stage active. Research output complete and reviewed."]
+
+---
+
+## Active stage
+
+[Which stage is currently running or next to run. Update when stages change.]
+
+---
+
+## Decisions made
+
+<!--
+  Standing decisions that govern all future runs — not per-session notes.
+  Those go in the session history file.
+  Format: decision → brief reasoning.
+-->
+
+- [Decision] — [why]
+
+---
+
+## Open questions
+
+<!--
+  Things that need a decision but haven't been decided yet.
+  Remove when resolved; move to Decisions if the answer is worth keeping.
+-->
+
+- [Question]
