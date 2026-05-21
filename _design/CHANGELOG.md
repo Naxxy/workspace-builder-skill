@@ -4,6 +4,54 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ---
 
+## 2026-05-21
+
+### 4.1 — Engineering standards layer
+
+**Applied to:** `skill/engineering-standards.md` (new), `SKILL.md`
+
+**What changed:**
+- Created `skill/engineering-standards.md` — four behavioral principles adapted from Karpathy's CLAUDE.md for ICM/system context: Think Before Acting, Simplicity First, Surgical Changes, Goal-Driven Execution. Generalised from coding-specific to consistent reproducible system behaviour.
+- Added "All modes: Read `skill/engineering-standards.md` before proceeding" to SKILL.md Modes section — standards apply universally as a pre-condition to any mode.
+- Original Karpathy source saved to `_design/karpathy-engineering-standards-original.md` for reference.
+
+**Gap addressed:** No universal behavioral baseline existed across modes. Each mode's protocol defined its own constraints in isolation. Engineering standards now provide a consistent foundation — minimal structure, surgical changes, verified outcomes — regardless of which mode is active.
+
+---
+
+### T5 — Tooling decision guides
+
+**Applied to:** `skill/tools/tool-decision.md` (new), `skill/tools/bash-style.md` (new), `SKILL.md`
+
+**What changed:**
+- Created `skill/tools/tool-decision.md` — decision guide for when to write a bash script vs. keep logic as Claude guidance vs. escalate to an external compiled tool. Grounded in the determinism principle: deterministic work belongs in deterministic tooling; AI handles intelligent/fuzzy work. Covers the inline → script → external tool escalation path, the risky-operation split-script pattern, and the skill's responsibility to flag (not build) compiled tools.
+- Created `skill/tools/bash-style.md` — concise style guide codifying conventions already in use across the four existing scripts: header format, section order, language choices (bashisms, quoting, safety), PASS/FAIL/NOTE output tokens, exit codes, and what not to do.
+- Updated `SKILL.md` skill files table: `skill/tools/` consolidated to single entry "Shell scripts and tooling guides (bash-style.md, tool-decision.md)".
+
+**Gap addressed:** No documented standard for when to write a script or what a script should look like. New scripts risked inconsistent structure, unsafe patterns, or being written where Claude guidance would have been more appropriate.
+
+---
+
+### Fix — Audit cleanup and maintenance
+
+**Applied to:** `skill/questionnaire.md`, `skill/templates/session-prompts.md.template` (new), `skill/templates/session-history.md.template`, `skill/anti-patterns.md`, `SKILL.md`
+
+**Issues fixed:**
+
+1. **Session prompts hardcoded in questionnaire** — Full `session-prompts.md` content was embedded inline in questionnaire.md step 9 with no single source of truth. Extracted to `skill/templates/session-prompts.md.template`; step 9 now reads "copy `skill/templates/session-prompts.md.template`".
+
+2. **Stale "3.2" reference in session-history.md.template** — Comment referenced "3.2 pattern detection" — a dead section number from an earlier skill version. Replaced with "AP-12 (anti-patterns.md)".
+
+3. **AP-12 fix missing Mode 5 route** — AP-12's Fix section went directly to Mode 3 (Update) even when the root cause was unclear. Recurring corrections are a primary Trace trigger. Fix section now routes to Mode 5 (Trace) as a diagnostic step when the root cause isn't clear from reading the contract alone.
+
+4. **Quality gates led with manual checks** — Setup quality gates listed manual checks first; preflight.sh was buried in the "run a full Check" instruction. Reordered: preflight.sh runs first (mechanical checks), anti-patterns.md deferred checks second, manual checklist as script-unavailable fallback only.
+
+5. **Feature flags stale** — `setup/skill-version.md` feature flag block in questionnaire.md step 10 predated today's additions. Added `engineering-standards: yes`, `tool-decision: yes`, `bash-style: yes`.
+
+6. **SKILL.md templates/ description incomplete** — Said "Mode 1 only"; `REFERENCES.md.template` is also used by Mode 3 upgrade procedure. Updated to "Mode 1 primary; REFERENCES.md.template also used in Mode 3".
+
+---
+
 ## 2026-05-08
 
 ### 3.2 — Recurring correction pattern detection via session-history/
