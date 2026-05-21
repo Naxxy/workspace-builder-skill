@@ -221,13 +221,18 @@ preflight-tool: yes                  — skill/tools/preflight.sh available
 
 
 **Quality gates before confirming done:**
+
+Run `bash skill/tools/preflight.sh [workspace-path]` — this covers all mechanical checks.
+Then read `skill/anti-patterns.md` for the deferred checks (those requiring reading and judgment) only.
+
+If `preflight.sh` is not accessible, run these manually:
 - `CLAUDE.md` is under 50 lines
 - `CLAUDE.md` contains an explicit identity statement ("You are [identity] helping [name], a [role], [purpose]")
 - Routing table present with paths matching actual stage folders
 - Every stage `CONTEXT.md` has Inputs, Process, and Outputs sections
 - Layer 3 (`references/`, `_config/`) and Layer 4 (`output/`) locations are clearly separated
 
-Then read `skill/anti-patterns.md` and run a full Check on the generated workspace. The completion report must include: the audit results, and the contents of `setup/session-prompts.md` so the user has the prompts immediately without opening another file.
+The completion report must include: the audit results, and the contents of `setup/session-prompts.md` so the user has the prompts immediately without opening another file.
 
 If the user wants to see a finished workspace for reference, point them to `skill/examples/script-to-animation/`.
 
