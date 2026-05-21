@@ -218,7 +218,11 @@ Example trigger: `02_script / length` appearing in session history files dated 2
 
 If session-history/ does not exist or has fewer than 3 files, skip this check — insufficient history to detect meaningful patterns.
 
-**Fix:** Examine the `description` field of the flagged corrections across the matching session files. Identify the common thread. Then apply a source-level fix:
+**Fix:** Examine the `description` field of the flagged corrections across the matching session files. Identify the common thread.
+
+If the root cause isn't clear from reading the contract and reference files, use Mode 5 (Trace) before applying a fix — recurring corrections often indicate a compounding deviation across stages rather than a single missing constraint.
+
+If the root cause is clear, apply a source-level fix:
 - If the stage's `## Process` section is missing the relevant constraint → add it (Mode 3 Update)
 - If the relevant Layer 3 reference file is underspecified → add the missing specificity (Mode 3 Update)
 
