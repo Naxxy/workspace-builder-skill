@@ -40,6 +40,30 @@ The exact session prompts content appears in: (1) questionnaire.md step 9 as the
 
 The VR checks (VR-1 through VR-3) check for individual files but not whether `setup/` exists as a directory. On a workspace that has `setup/` but with different contents, the file checks handle it correctly. But if someone manually created a workspace without a `setup/` directory at all, the file-not-found checks would report the same warnings as missing files. Not harmful, but slightly imprecise.
 
+### E7: L0-6 (AP-3) absent from preflight.sh — not automated and not deferred
+
+**Check:** L0-6 — "Every stage folder in the workspace has at least one corresponding row in the routing table" — mapped to AP-3 in `skill/review-checklist.md`.
+
+**The gap:** This check exists in `skill/review-checklist.md` (Mode 2 / Review) but is absent from `skill/tools/preflight.sh` entirely — it appears neither in the automated check functions nor in the `Deferred to Claude` heredoc at the end of the script. This means it is silently skipped in Mode 4 (Check), even though it is mechanically verifiable.
+
+**What the check does:** Cross-references the routing table rows in `CLAUDE.md` against the actual `stages/` subdirectory names. Detects two failure modes: (1) a stage folder exists with no routing row — the orchestrator can't find it; (2) a routing row points to a folder that doesn't exist — a dead route.
+
+**How to fix:** In `preflight.sh`, add a function (e.g. `check_routing_coverage`) that: (a) extracts stage folder names from `stages/` directory listing, (b) reads the routing table rows from `CLAUDE.md`, (c) cross-references both directions, (d) emits `FAIL [L0-6]` for any stage folder with no routing row, and `FAIL [L0-6]` for any routing row pointing to a non-existent folder. Wire it into `main()` after `check_claude_md`. Use the same `pass/fail/warn/note` helper functions already in the script. Follow `skill/tools/bash-style.md` conventions throughout.
+
+**Files to change:** `skill/tools/preflight.sh` only. No changes to review-checklist.md or anti-patterns.md — the check is already correctly defined there.
+
+### E8: L1-6 (AP-1) absent from preflight.sh — not automated and not deferred
+
+**Check:** L1-6 — "File is one page or less" (applied to root `CONTEXT.md`) — mapped to AP-1 in `skill/review-checklist.md`.
+
+**The gap:** Same class of issue as E7. L1-6 exists in `skill/review-checklist.md` but is absent from `skill/tools/preflight.sh` — neither automated nor in the deferred list. AP-1 (CLAUDE.md > 50 lines) is in preflight but the equivalent check for CONTEXT.md length is not.
+
+**What the check does:** Flags root `CONTEXT.md` files that have grown beyond one page (~50 lines is the working threshold used for CLAUDE.md in AP-1/L0-2; apply the same). A CONTEXT.md that has grown to multiple pages has accumulated project-brief content that belongs elsewhere, degrading Layer 1's role as a concise routing layer.
+
+**How to fix:** In `preflight.sh`, inside the existing `check_context_md` function (which already checks that CONTEXT.md exists and is readable), add a line-count check: if `wc -l < CONTEXT.md` exceeds the threshold (suggest 60 lines, giving more headroom than CLAUDE.md's 50 given CONTEXT.md's broader scope), emit `warn 'L1-6' "CONTEXT.md exceeds one page — check for project detail that belongs in stage files (AP-1)"`. No new function needed — it slots directly into the existing function.
+
+**Files to change:** `skill/tools/preflight.sh` only. No changes to review-checklist.md or anti-patterns.md.
+
 ---
 
 ## Future investigation
