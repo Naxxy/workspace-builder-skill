@@ -20,11 +20,7 @@ The feature flags in `setup/skill-version.md` record what the skill generated at
 
 **Implication:** Don't rely on skill-version.md to determine current workspace state. Use preflight.sh VR checks for that. The version file answers "when was this made and what was available then," not "does this workspace currently have all features."
 
-### E2: Skill build date requires manual update discipline
-
-The `**Skill build:** 2026-05-07` line in SKILL.md is the canonical version date — questionnaire.md step 10 reads it to populate generated skill-version.md files. But there is no automated enforcement: when the skill is significantly updated, someone must remember to update this line. If they don't, newly generated workspaces will have stale provenance.
-
-**Mitigation idea:** Add a note to SKILL.md near the build date reminding editors to update it when features change. Could also be detected by VR checks eventually (version file date much older than file modification dates).
+### E2 ✓ applied 2026-05-25
 
 ### E3: Duplication path doesn't inspect source workspace's skill-version.md
 

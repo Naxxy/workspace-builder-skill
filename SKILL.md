@@ -3,6 +3,7 @@
 A Claude Code skill for creating, reviewing, updating, and auditing ICM/MWP-compliant workspaces. Grounded in the Interpretable Context Methodology (Van Clief & McDermott): folder structure is agent architecture. A properly layered workspace gives a single orchestrating agent the context it needs at each stage — without a framework, without code, without server infrastructure.
 
 **Skill build:** 2026-05-25
+**After any significant change:** update the build date above and add an entry to `_design/CHANGELOG.md` (format: date → change ID → what changed → gap addressed).
 
 ---
 
