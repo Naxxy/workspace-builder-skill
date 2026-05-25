@@ -62,6 +62,17 @@ For multi-step tasks, state a brief plan:
 
 Strong success criteria enable independent execution. Weak criteria ("make it better") require constant clarification.
 
+## 5. Safe Deletion
+
+**Never use `rm -rf`. Delete files or directories, never both at once with a forced recursive command.**
+
+- To delete a file: `rm path/to/file`
+- To delete an empty directory: `rmdir path/to/dir`
+- To delete a non-empty directory: remove its contents first, then the directory — or use `rm -r` (without `-f`) so errors surface rather than being silenced
+- Never use `rm -rf` under any circumstances
+
+Why: forced recursive deletes hide errors and have no precise target boundary. A typo or wrong working directory can silently destroy unintended files with no recovery path.
+
 ---
 
 **These standards are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before action rather than after mistakes.

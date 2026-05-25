@@ -4,6 +4,20 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ---
 
+## 2026-05-25
+
+### Fix — Safe deletion rule: prohibit `rm -rf` globally
+
+**Applied to:** `skill/engineering-standards.md`
+
+**What changed:**
+- Added Section 5 "Safe Deletion" to `skill/engineering-standards.md` — a global rule prohibiting `rm -rf` in all workspace operations. Permitted alternatives: `rm` for single files, `rmdir` for empty directories, `rm -r` (without `-f`) for non-empty directories so errors surface rather than being silenced.
+- Rule applies to all modes because `engineering-standards.md` is loaded as a pre-condition before any mode-specific skill file.
+
+**Gap addressed:** No rule prevented forced recursive deletes. A typo in a path or an unexpected working directory during any workspace operation could silently destroy unintended files with no recovery path. Forced recursive deletes have no precise target boundary and suppress errors — both properties are unsafe in an agent context.
+
+---
+
 ## 2026-05-21
 
 ### 4.1 — Engineering standards layer
