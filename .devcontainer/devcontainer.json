@@ -1,0 +1,24 @@
+{
+  "name": "ai-sandbox",
+  "runArgs": ["--name", "ai-sandbox-${localWorkspaceFolderBasename}"],
+  "image": "ai-sandbox:latest",
+  "remoteUser": "agent",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-devcontainer-home,target=/home/agent,type=volume",
+    "source=ai-sandbox-shared-claude,target=/home/agent/.claude,type=volume",
+    "source=ai-sandbox-shared-codex,target=/home/agent/.codex,type=volume",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=${localEnv:HOME}/.ai-agents/ai-sandbox/src/claude-settings.json,target=/home/agent/.claude/settings.json,type=bind,readonly"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "openai.chatgpt",
+        "rooveterinaryinc.roo-cline"
+      ]
+    }
+  }
+}
