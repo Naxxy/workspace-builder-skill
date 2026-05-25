@@ -35,7 +35,7 @@ Order:
 1. Global state — counters, parallel arrays, format constants
 2. Output helpers — `pass`, `warn`, `crit`, `suggest`, `section`
 3. Utilities — small reusable functions with no side effects
-4. Domain logic — one function per concern
+4. Domain logic — one function per concern; if an orchestrating function runs multiple independent checks or transforms inline, decompose it: one sub-function per check, the orchestrating function becomes a table of contents that calls them in sequence
 5. Presentation — summary tables, result lines
 6. `main()` — always last; reads as a table of contents
 
