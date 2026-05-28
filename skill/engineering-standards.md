@@ -73,6 +73,24 @@ Strong success criteria enable independent execution. Weak criteria ("make it be
 
 Why: forced recursive deletes hide errors and have no precise target boundary. A typo or wrong working directory can silently destroy unintended files with no recovery path.
 
+## 6. Commit and Changelog Standards
+
+**Every session that changes files must produce commits and a changelog entry.**
+
+### Commits
+
+- **One logical change per commit.** Three unrelated changes = three commits. A reviewer reads the subject line and knows what changed without opening the diff.
+- **Commit message format:** Imperative subject ≤72 characters (`Add` / `Fix` / `Update` / `Remove` — not past tense). Optional body explaining *why*, not what. Co-author line for Claude: `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>`
+- **Stage selectively.** Use `git add <specific-file>`, not `git add -A` or `git add .`.
+- **Submodule pointer updates** are their own commit, separate from workspace file changes.
+
+### Changelog
+
+- Update `CHANGELOG.md` at the workspace root before or alongside the relevant commit — not as an afterthought at the end of the session.
+- Entry format: `## YYYY-MM-DD` heading, `### Short title` per logical group, bullet list of what changed, one-sentence **Why:** line.
+- Required for: new files, reference/config updates, `CLAUDE.md` changes, structural changes, submodule updates.
+- Not required for: `PROGRESS.md` or `session-history/` updates (these are their own running logs).
+
 ---
 
 **These standards are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before action rather than after mistakes.
