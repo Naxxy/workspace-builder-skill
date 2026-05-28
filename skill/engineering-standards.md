@@ -91,6 +91,14 @@ Why: forced recursive deletes hide errors and have no precise target boundary. A
 - Required for: new files, reference/config updates, `CLAUDE.md` changes, structural changes, submodule updates.
 - Not required for: `PROGRESS.md` or `session-history/` updates (these are their own running logs).
 
+## 7. Task-Driven Change Management
+
+**Build up changes into tasks. Apply them deliberately. Close them completely.**
+
+When making non-trivial changes to a workspace, write proposed changes to a task file (`setup/tasks.md` or equivalent) before applying any of them. Each task must be self-contained, independently executable, and have a concrete success criterion. A coordinator agent — or a human — can then apply tasks directly, or spawn sub-agents to apply them in parallel.
+
+A task is not complete until: success criterion verified, changelog updated, task removed from the task file, and changes committed. Read `skill/task-protocol.md` for the full format, coordinator procedure, and sub-agent guidance.
+
 ---
 
 **These standards are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before action rather than after mistakes.
