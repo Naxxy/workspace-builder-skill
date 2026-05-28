@@ -8,7 +8,7 @@ Tasks decouple *identifying* changes from *applying* them. A session can end wit
 
 ## Task file location
 
-`setup/tasks.md` at the workspace root. If the workspace has no `setup/` directory, use `TASKS.md` at the root.
+`setup/TASKS.md` at the workspace root. If the workspace has no `setup/` directory, use `TASKS.md` at the root.
 
 ---
 
@@ -57,7 +57,7 @@ A task is `parallel-safe: depends on TASK-NNN` if it can run in parallel with ev
 
 ## Coordinator agent procedure
 
-A coordinator agent — or a primary agent with no other active work — reads `setup/tasks.md` and applies tasks using this procedure.
+A coordinator agent — or a primary agent with no other active work — reads `setup/TASKS.md` and applies tasks using this procedure.
 
 ### Step 1: Read and classify
 
@@ -95,14 +95,14 @@ For each task in the current wave:
 2. Apply the change described in "What to do"
 3. Verify the success criterion
 4. Write the changelog entry into `CHANGELOG.md`
-5. Remove the task block from `setup/tasks.md`
-6. Commit: task changes + CHANGELOG.md update + tasks.md removal in one commit
+5. Remove the task block from `setup/TASKS.md`
+6. Commit: task changes + CHANGELOG.md update + TASKS.md removal in one commit
 
 **Sub-agent execution:**
 1. Create a git worktree if the task is large or if running in parallel: `git worktree add ../<workspace-name>-task-NNN -b task-NNN`
 2. Spawn the sub-agent against the worktree path, passing the full task block as context
 3. When the sub-agent returns, verify the success criterion against the worktree
-4. If verified: merge the branch, write the changelog entry, remove the task from `setup/tasks.md`, commit
+4. If verified: merge the branch, write the changelog entry, remove the task from `setup/TASKS.md`, commit
 5. If not verified: do not merge; re-run or escalate
 6. Remove the worktree: `git worktree remove ../<workspace-name>-task-NNN`
 
@@ -111,10 +111,10 @@ For each task in the current wave:
 A task is closed when all four conditions are met:
 1. **Success criterion verified** — run the check described in the task
 2. **Changelog updated** — the changelog entry from the task block is written into `CHANGELOG.md`
-3. **Task removed from tasks.md** — the task block is deleted (not commented out, not marked "done" and left in place)
+3. **Task removed from TASKS.md** — the task block is deleted (not commented out, not marked "done" and left in place)
 4. **Changes committed** — per the commit standards in Engineering Standard 6
 
-Do not close a task if the success criterion has not been checked. Do not leave completed tasks in `tasks.md` — the file should only contain pending work.
+Do not close a task if the success criterion has not been checked. Do not leave completed tasks in `TASKS.md` — the file should only contain pending work.
 
 ---
 
@@ -127,7 +127,7 @@ When you identify a change that should be made but not applied immediately:
 3. Set `parallel-safe` honestly — if unsure, set `no`
 4. Write the success criterion as something checkable: a file path that exists, a line count, a grep match, a preflight result. Not "looks correct" or "feels right"
 5. Pre-write the changelog entry — this removes ambiguity about how the change should be described when it's done
-6. Commit the addition to `tasks.md` separately from any other work in the session
+6. Commit the addition to `TASKS.md` separately from any other work in the session
 
 ### What makes a good success criterion
 
@@ -155,12 +155,12 @@ Instructions:
 1. Read the files listed in "Files to read" before making any changes.
 2. Apply exactly the change described in "What to do". Do not make other improvements.
 3. Verify the success criterion. Report the result.
-4. Do not update CHANGELOG.md or tasks.md — the coordinator handles those.
+4. Do not update CHANGELOG.md or TASKS.md — the coordinator handles those.
 5. Do not commit — the coordinator handles that too.
 6. Report back: success criterion result, files changed, any blockers.
 ```
 
-The coordinator, not the sub-agent, owns the changelog update, tasks.md removal, and commit. This keeps the audit trail centralised.
+The coordinator, not the sub-agent, owns the changelog update, TASKS.md removal, and commit. This keeps the audit trail centralised.
 
 ---
 
