@@ -3,14 +3,15 @@
   "runArgs": ["--name", "ai-sandbox-${localWorkspaceFolderBasename}"],
   "image": "ai-sandbox:latest",
   "remoteUser": "agent",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/agent/.local/share/ai-agents/skills/${localWorkspaceFolderBasename},type=bind",
+  "workspaceFolder": "/home/agent/.local/share/ai-agents/skills/${localWorkspaceFolderBasename}",
   "mounts": [
     "source=${localWorkspaceFolderBasename}-devcontainer-home,target=/home/agent,type=volume",
     "source=ai-sandbox-shared-claude,target=/home/agent/.claude,type=volume",
     "source=ai-sandbox-shared-codex,target=/home/agent/.codex,type=volume",
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
-    "source=${localEnv:HOME}/.ai-agents/ai-sandbox/src/claude-settings.json,target=/home/agent/.claude/settings.json,type=bind,readonly"
+    "source=${localEnv:HOME}/.local/share/ai-agents/ai-sandbox/src/claude-settings.json,target=/home/agent/.claude/settings.json,type=bind,readonly",
+    "source=${localEnv:HOME}/.local/share/ai-agents,target=/home/agent/.local/share/ai-agents,type=bind,consistency=cached"
   ],
   "customizations": {
     "vscode": {
