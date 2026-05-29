@@ -3,8 +3,8 @@
 Copy these at the start and end of each Claude Code session.
 
 ## Session start
-If `skill/tools/reconcile-progress.sh` is accessible, run it first:
-`bash skill/tools/reconcile-progress.sh`
+If `core/tools/reconcile-progress.sh` is accessible, run it first:
+`bash core/tools/reconcile-progress.sh`
 It compares the actual output/ directories against stage contracts and PROGRESS.md,
 and prints any discrepancies with a recommended state.
 
@@ -14,7 +14,7 @@ doesn't match what PROGRESS.md records, describe the discrepancy and reconcile
 before asking what to do next.
 
 ## Session end
-Create session-history/YYYY-MM-DD.md using skill/templates/session-history.md.template.
+Create session-history/YYYY-MM-DD.md using core/templates/session-history.md.template.
 Record: what was completed, any corrections made to stage outputs (stage name, type, description),
 decisions, and what's next. Then update PROGRESS.md Current Status and Active stage.
 

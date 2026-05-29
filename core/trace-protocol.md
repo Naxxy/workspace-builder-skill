@@ -127,7 +127,7 @@ directness means stating the finding before any supporting evidence" is actionab
 
 ## After the diagnosis
 
-Offer to hand off to Mode 3 (read `skill/update-protocol.md`) to apply the fix.
+Offer to hand off to Mode 3 (read `core/update-protocol.md`) to apply the fix.
 
 If the fix is to a Layer 3 reference file, note that it will affect all future
 pipeline runs — which is usually the intended outcome of a source-level fix.

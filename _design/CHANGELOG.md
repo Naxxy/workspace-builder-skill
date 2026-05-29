@@ -4,14 +4,29 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ---
 
+## 2026-05-29
+
+### Fix — Rename `skill/` directory to `core/`
+
+**Applied to:** `skill/` → `core/` (rename), `SKILL.md`, `README.md`, `VERSIONING.md`, all files under `core/` that referenced `skill/`, `_design/CHANGELOG.md`, `_design/IMPROVEMENTS.md`
+
+**What changed:**
+- Renamed the `skill/` directory to `core/` to align with the convention used across other skills in this repository (e.g. `adr-skill`), where `core/` holds the skill's own files and `skills/` (if present) holds referenced sub-skills.
+- Updated all internal path references from `skill/` to `core/` across every affected file: `SKILL.md`, `README.md`, `VERSIONING.md`, all skill protocol and template files, all example workspace `setup/` files, and both `_design/` documents.
+- Corrected the README installation example routing table path from `skill/workspace-builder/` to `skills/workspace-builder/` to match the actual directory convention.
+
+**Gap addressed:** The `skill/` directory name was inconsistent with the `core/` convention established in other skills in this repo, making the structure harder to read at a glance and the convention less uniform across the skill library.
+
+---
+
 ## 2026-05-25
 
 ### Fix — Safe deletion rule: prohibit `rm -rf` globally
 
-**Applied to:** `skill/engineering-standards.md`
+**Applied to:** `core/engineering-standards.md`
 
 **What changed:**
-- Added Section 5 "Safe Deletion" to `skill/engineering-standards.md` — a global rule prohibiting `rm -rf` in all workspace operations. Permitted alternatives: `rm` for single files, `rmdir` for empty directories, `rm -r` (without `-f`) for non-empty directories so errors surface rather than being silenced.
+- Added Section 5 "Safe Deletion" to `core/engineering-standards.md` — a global rule prohibiting `rm -rf` in all workspace operations. Permitted alternatives: `rm` for single files, `rmdir` for empty directories, `rm -r` (without `-f`) for non-empty directories so errors surface rather than being silenced.
 - Rule applies to all modes because `engineering-standards.md` is loaded as a pre-condition before any mode-specific skill file.
 
 **Gap addressed:** No rule prevented forced recursive deletes. A typo in a path or an unexpected working directory during any workspace operation could silently destroy unintended files with no recovery path. Forced recursive deletes have no precise target boundary and suppress errors — both properties are unsafe in an agent context.
@@ -22,11 +37,11 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 4.1 — Engineering standards layer
 
-**Applied to:** `skill/engineering-standards.md` (new), `SKILL.md`
+**Applied to:** `core/engineering-standards.md` (new), `SKILL.md`
 
 **What changed:**
-- Created `skill/engineering-standards.md` — four behavioral principles adapted from Karpathy's CLAUDE.md for ICM/system context: Think Before Acting, Simplicity First, Surgical Changes, Goal-Driven Execution. Generalised from coding-specific to consistent reproducible system behaviour.
-- Added "All modes: Read `skill/engineering-standards.md` before proceeding" to SKILL.md Modes section — standards apply universally as a pre-condition to any mode.
+- Created `core/engineering-standards.md` — four behavioral principles adapted from Karpathy's CLAUDE.md for ICM/system context: Think Before Acting, Simplicity First, Surgical Changes, Goal-Driven Execution. Generalised from coding-specific to consistent reproducible system behaviour.
+- Added "All modes: Read `core/engineering-standards.md` before proceeding" to SKILL.md Modes section — standards apply universally as a pre-condition to any mode.
 - Original Karpathy source saved to `_design/karpathy-engineering-standards-original.md` for reference.
 
 **Gap addressed:** No universal behavioral baseline existed across modes. Each mode's protocol defined its own constraints in isolation. Engineering standards now provide a consistent foundation — minimal structure, surgical changes, verified outcomes — regardless of which mode is active.
@@ -35,12 +50,12 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### T5 — Tooling decision guides
 
-**Applied to:** `skill/tools/tool-decision.md` (new), `skill/tools/bash-style.md` (new), `SKILL.md`
+**Applied to:** `core/tools/tool-decision.md` (new), `core/tools/bash-style.md` (new), `SKILL.md`
 
 **What changed:**
-- Created `skill/tools/tool-decision.md` — decision guide for when to write a bash script vs. keep logic as Claude guidance vs. escalate to an external compiled tool. Grounded in the determinism principle: deterministic work belongs in deterministic tooling; AI handles intelligent/fuzzy work. Covers the inline → script → external tool escalation path, the risky-operation split-script pattern, and the skill's responsibility to flag (not build) compiled tools.
-- Created `skill/tools/bash-style.md` — concise style guide codifying conventions already in use across the four existing scripts: header format, section order, language choices (bashisms, quoting, safety), PASS/FAIL/NOTE output tokens, exit codes, and what not to do.
-- Updated `SKILL.md` skill files table: `skill/tools/` consolidated to single entry "Shell scripts and tooling guides (bash-style.md, tool-decision.md)".
+- Created `core/tools/tool-decision.md` — decision guide for when to write a bash script vs. keep logic as Claude guidance vs. escalate to an external compiled tool. Grounded in the determinism principle: deterministic work belongs in deterministic tooling; AI handles intelligent/fuzzy work. Covers the inline → script → external tool escalation path, the risky-operation split-script pattern, and the skill's responsibility to flag (not build) compiled tools.
+- Created `core/tools/bash-style.md` — concise style guide codifying conventions already in use across the four existing scripts: header format, section order, language choices (bashisms, quoting, safety), PASS/FAIL/NOTE output tokens, exit codes, and what not to do.
+- Updated `SKILL.md` skill files table: `core/tools/` consolidated to single entry "Shell scripts and tooling guides (bash-style.md, tool-decision.md)".
 
 **Gap addressed:** No documented standard for when to write a script or what a script should look like. New scripts risked inconsistent structure, unsafe patterns, or being written where Claude guidance would have been more appropriate.
 
@@ -48,11 +63,11 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### Fix — Audit cleanup and maintenance
 
-**Applied to:** `skill/questionnaire.md`, `skill/templates/session-prompts.md.template` (new), `skill/templates/session-history.md.template`, `skill/anti-patterns.md`, `SKILL.md`
+**Applied to:** `core/questionnaire.md`, `core/templates/session-prompts.md.template` (new), `core/templates/session-history.md.template`, `core/anti-patterns.md`, `SKILL.md`
 
 **Issues fixed:**
 
-1. **Session prompts hardcoded in questionnaire** — Full `session-prompts.md` content was embedded inline in questionnaire.md step 9 with no single source of truth. Extracted to `skill/templates/session-prompts.md.template`; step 9 now reads "copy `skill/templates/session-prompts.md.template`".
+1. **Session prompts hardcoded in questionnaire** — Full `session-prompts.md` content was embedded inline in questionnaire.md step 9 with no single source of truth. Extracted to `core/templates/session-prompts.md.template`; step 9 now reads "copy `core/templates/session-prompts.md.template`".
 
 2. **Stale "3.2" reference in session-history.md.template** — Comment referenced "3.2 pattern detection" — a dead section number from an earlier skill version. Replaced with "AP-12 (anti-patterns.md)".
 
@@ -70,7 +85,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 3.2 — Recurring correction pattern detection via session-history/
 
-**Applied to:** `skill/templates/PROGRESS.md.template` (restructured), `skill/templates/session-history.md.template` (new), `skill/templates/CLAUDE.md.template` (rule 2), all three example workspaces, `skill/anti-patterns.md` (AP-12), `skill/review-checklist.md` (SP-3, SP-5), `skill/tools/preflight.sh` (SP-3, SP-5), `skill/tools/audit-all.sh` (last_session_date), `skill/examples/README.md`, `skill/questionnaire.md` (session-end prompt)
+**Applied to:** `core/templates/PROGRESS.md.template` (restructured), `core/templates/session-history.md.template` (new), `core/templates/CLAUDE.md.template` (rule 2), all three example workspaces, `core/anti-patterns.md` (AP-12), `core/review-checklist.md` (SP-3, SP-5), `core/tools/preflight.sh` (SP-3, SP-5), `core/tools/audit-all.sh` (last_session_date), `core/examples/README.md`, `core/questionnaire.md` (session-end prompt)
 
 **What changed:**
 - Session history separated from PROGRESS.md into individual `session-history/YYYY-MM-DD.md` files with YAML frontmatter. PROGRESS.md is now active state only: Current Status, Active stage, Decisions made, Open questions.
@@ -88,7 +103,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### E4 — Proactive Q3 identity suggestion in questionnaire
 
-**Applied to:** `skill/questionnaire.md`
+**Applied to:** `core/questionnaire.md`
 
 **What changed:**
 - Q3 guidance updated: "If the user is unsure, don't wait for them to figure it out. Derive a suggestion from Q2 immediately: 'Based on your role as [Q2 answer], Claude could be *a senior [domain] expert*. Does that feel right, or is there a specific voice you'd prefer?' Then let them accept, tweak, or replace it."
@@ -102,7 +117,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### Fix — Full consistency review
 
-**Applied to:** `skill/questionnaire.md`, all three example `setup/questionnaire-answers.md`, `skill/examples/README.md`, `_design/IMPROVEMENTS.md`
+**Applied to:** `core/questionnaire.md`, all three example `setup/questionnaire-answers.md`, `core/examples/README.md`, `_design/IMPROVEMENTS.md`
 
 **Issues found and fixed:**
 1. **Duplication path missing skill-version.md** — Step 4 of the duplication path generated session-prompts.md and questionnaire-answers.md but not skill-version.md. Added as step 9.
@@ -124,7 +139,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### T4 — Workspace version tracking
 
-**Applied to:** `SKILL.md`, `skill/questionnaire.md`, `skill/anti-patterns.md`, `skill/review-checklist.md`, `skill/tools/preflight.sh`, `skill/update-protocol.md`, all three example workspaces
+**Applied to:** `SKILL.md`, `core/questionnaire.md`, `core/anti-patterns.md`, `core/review-checklist.md`, `core/tools/preflight.sh`, `core/update-protocol.md`, all three example workspaces
 
 **What changed:**
 - Added `**Skill build:** 2026-05-07` to SKILL.md — single source of truth for the current skill version date.
@@ -141,13 +156,13 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 3.1 — Output provenance tracking (Trace mode)
 
-**Applied to:** `skill/trace-protocol.md` (new), `SKILL.md`
+**Applied to:** `core/trace-protocol.md` (new), `SKILL.md`
 
 **What changed:**
-- Created `skill/trace-protocol.md` — a 6-step procedure for walking backwards through the stage chain to find where a specific output problem originated. Steps: define the problem precisely → read the problem stage → check Layer 3 reference files → walk backwards → classify root cause (A: contract problem, B: reference material problem, C: input problem, D: compounding deviation) → report with specific actionable fix.
+- Created `core/trace-protocol.md` — a 6-step procedure for walking backwards through the stage chain to find where a specific output problem originated. Steps: define the problem precisely → read the problem stage → check Layer 3 reference files → walk backwards → classify root cause (A: contract problem, B: reference material problem, C: input problem, D: compounding deviation) → report with specific actionable fix.
 - Added Mode 5 (Trace) to SKILL.md: detection triggers ("Trace", "where did this go wrong", "find the source of", "why does the output"), option 4 in the ambiguous-case question, Mode 5 entry in the Modes section.
 - Updated the modes table to include Trace, and the chaining note: "Trace hands off to Update."
-- Added `skill/trace-protocol.md` and `skill/tools/` to the skill file structure listing.
+- Added `core/trace-protocol.md` and `core/tools/` to the skill file structure listing.
 
 **Design:** Trace is distinct from Review (Mode 2) and Check (Mode 4). Those find structural/anti-pattern problems in the workspace. Trace diagnoses a known content quality problem by tracing its origin through the stage chain — the equivalent of a stack trace for a content pipeline. After diagnosis, it hands off to Mode 3 (Update) to apply the source-level fix.
 
@@ -155,10 +170,10 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### T3 — Stage output diff
 
-**Applied to:** `skill/tools/diff-stage.sh` (new), `skill/templates/stage-CONTEXT.md.template`
+**Applied to:** `core/tools/diff-stage.sh` (new), `core/templates/stage-CONTEXT.md.template`
 
 **What changed:**
-- Created `skill/tools/diff-stage.sh` — two-mode tool for comparing stage outputs between runs.
+- Created `core/tools/diff-stage.sh` — two-mode tool for comparing stage outputs between runs.
   - `--archive` mode: copies each file named in the stage's `## Outputs` contract to `output/_archive/` with a timestamp prefix (`YYYY-MM-DDTHH-MM_filename`). Run before re-executing the stage.
   - Default mode: finds the most recent archive for each contract-named output file and shows a unified diff against the current output. Exit code 1 if changes detected, 0 if identical.
 - Filenames are driven by the stage's `## Outputs` section — the same contract that preflight.sh and reconcile-progress.sh use, so there is no separate configuration.
@@ -170,16 +185,16 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### T2 — Batch workspace audit
 
-**Applied to:** `skill/tools/audit-all.sh` (new)
+**Applied to:** `core/tools/audit-all.sh` (new)
 
 **What changed:**
-- Created `skill/tools/audit-all.sh` — finds all direct subdirectories of a parent directory that contain a CLAUDE.md, runs `preflight.sh` on each, and produces a summary table: workspace name, critical count, warnings, suggestions, last session date from PROGRESS.md.
+- Created `core/tools/audit-all.sh` — finds all direct subdirectories of a parent directory that contain a CLAUDE.md, runs `preflight.sh` on each, and produces a summary table: workspace name, critical count, warnings, suggestions, last session date from PROGRESS.md.
 - Table rows truncate workspace names to 28 chars with ellipsis.
 - Full preflight detail is shown only for workspaces with Critical or Warning issues; clean workspaces produce only a table row.
 - Exit code 0 if all workspaces clean, 1 if any had issues.
 - Locates `preflight.sh` automatically relative to its own script directory — no path configuration required.
 
-**Usage:** `bash skill/tools/audit-all.sh [parent-directory]`
+**Usage:** `bash core/tools/audit-all.sh [parent-directory]`
 
 **Gap addressed:** preflight.sh audited one workspace at a time. Users with multiple workspaces had no health overview across all of them.
 
@@ -187,7 +202,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### Fix — Identity statement format: explicit Claude persona before "helping"
 
-**Applied to:** `skill/templates/CLAUDE.md.template`, all three example workspaces, `skill/questionnaire.md`, `skill/anti-patterns.md`, `skill/review-checklist.md`, `skill/tools/preflight.sh`
+**Applied to:** `core/templates/CLAUDE.md.template`, all three example workspaces, `core/questionnaire.md`, `core/anti-patterns.md`, `core/review-checklist.md`, `core/tools/preflight.sh`
 
 **What changed:**
 - Identity format changed from `"You are helping [name], a [role], [purpose]"` to `"You are [Claude's identity] helping [name], a [role], [purpose]"`. Claude now has an explicit identity it embodies before the helping relationship is established.
@@ -207,10 +222,10 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### T1 — PROGRESS.md reconciliation script
 
-**Applied to:** `skill/tools/reconcile-progress.sh` (new), `skill/questionnaire.md`, `skill/templates/PROGRESS.md.template`
+**Applied to:** `core/tools/reconcile-progress.sh` (new), `core/questionnaire.md`, `core/templates/PROGRESS.md.template`
 
 **What changed:**
-- Created `skill/tools/reconcile-progress.sh` — reads all stage contracts' `## Outputs` sections, checks which files exist in `output/` with content, compares against PROGRESS.md completion records, and prints a reconciliation report with a recommended "Current Status" line.
+- Created `core/tools/reconcile-progress.sh` — reads all stage contracts' `## Outputs` sections, checks which files exist in `output/` with content, compares against PROGRESS.md completion records, and prints a reconciliation report with a recommended "Current Status" line.
 - Output format: per-stage table showing file system status (COMPLETE/PARTIAL/EMPTY/NONE), PROGRESS.md status, and a match/discrepancy indicator. Ends with a recommended state the user can apply.
 - Exit code 0 if consistent, 1 if discrepancies found.
 - Updated session-start prompt in `questionnaire.md` to prefer the script when accessible, with the manual Claude approach as fallback.
@@ -222,7 +237,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 2.4 — Transitive dependency checking in Update
 
-**Applied to:** `skill/update-protocol.md`
+**Applied to:** `core/update-protocol.md`
 
 **What changed:**
 - Added step 6 to the Procedure: "Verify the full stage chain" for structural updates. Runs IC-1 (chain continuity), IC-3 (output/input filename match), and IC-8 (unexplained stage skips) across every adjacent stage pair in the workspace — not just the pair adjacent to the change.
@@ -235,10 +250,10 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 3.3 — Pre-flight mechanical checks via script
 
-**Applied to:** `skill/tools/preflight.sh` (new), `skill/anti-patterns.md`
+**Applied to:** `core/tools/preflight.sh` (new), `core/anti-patterns.md`
 
 **What changed:**
-- Created `skill/tools/preflight.sh` — a bash script (following style.ysap.sh conventions) that runs all mechanically-determinable ICM checks against a workspace. Decomposed into small, focused functions: `check_claude_md`, `check_context_md`, `check_stage_contracts`, `check_stage_dirs`, `check_output_contracts`, `check_session`, `check_fs_vs_progress`. Output uses `PASS/FAIL/NOTE` prefixes with check IDs mapping directly to review-checklist.md.
+- Created `core/tools/preflight.sh` — a bash script (following style.ysap.sh conventions) that runs all mechanically-determinable ICM checks against a workspace. Decomposed into small, focused functions: `check_claude_md`, `check_context_md`, `check_stage_contracts`, `check_stage_dirs`, `check_output_contracts`, `check_session`, `check_fs_vs_progress`. Output uses `PASS/FAIL/NOTE` prefixes with check IDs mapping directly to review-checklist.md.
 - Script ends with a `Deferred to Claude` heredoc listing every check that requires reading and judgment (AP-5, AP-6, all semantic content checks, IC-8 intentionality, etc.) so Claude knows exactly what to verify manually.
 - Updated "How to run a full audit" in anti-patterns.md: when the script is available, run it first; PASS items can be skipped; FAIL/NOTE items are pre-populated findings; proceed only to the deferred checks manually.
 - Added new tooling improvements to IMPROVEMENTS.md: T1 (PROGRESS.md reconciliation script), T2 (batch workspace audit), T3 (stage output diff), T4 (workspace version tracking).
@@ -249,7 +264,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 2.3 — Skills and MCP wiring in the routing table
 
-**Applied to:** `skill/questionnaire.md`, `skill/update-protocol.md`
+**Applied to:** `core/questionnaire.md`, `core/update-protocol.md`
 
 **What changed:**
 - Added Group C Q6 to the questionnaire: "Does any stage need a specific skill or external tool?" with examples (web search MCP, code execution, design system skill, data tool). Answer populates the Skills column in the routing table.
@@ -265,7 +280,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 2.2 — Workspace duplication mode
 
-**Applied to:** `skill/questionnaire.md`, `SKILL.md`
+**Applied to:** `core/questionnaire.md`, `SKILL.md`
 
 **What changed:**
 - Added a pre-flight question to the top of the questionnaire interview: "Are you building from scratch, or adapting an existing workspace?" Routes to either the standard Groups A–D or the new Duplication path.
@@ -281,7 +296,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### Fix — Explicit identity statement in CLAUDE.md
 
-**Applied to:** `skill/templates/CLAUDE.md.template`, all three example workspaces, `skill/anti-patterns.md`, `skill/review-checklist.md`, `skill/questionnaire.md`
+**Applied to:** `core/templates/CLAUDE.md.template`, all three example workspaces, `core/anti-patterns.md`, `core/review-checklist.md`, `core/questionnaire.md`
 
 **What changed:**
 - CLAUDE.md template: replaced the bare one-liner description with a proper `## Identity` section — "You are helping [name], a [role], with [domain]." The Identity statement absorbs the workspace description while adding the role context the Foundation course identifies as critical.
@@ -298,11 +313,11 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 2.1 — Multiple domain examples
 
-**Applied to:** `skill/examples/`, `skill/questionnaire.md`
+**Applied to:** `core/examples/`, `core/questionnaire.md`
 
 **What changed:**
-- Added `skill/examples/research-synthesis/` — a 4-stage pipeline (collect → extract → synthesise → report) for literature review and research synthesis work. Includes CLAUDE.md, CONTEXT.md, PROGRESS.md, `_config/voice.md`, stage contracts for all four stages, `stages/04_report/references/report-structure.md`, and `setup/questionnaire-answers.md`.
-- Added `skill/examples/client-deliverable/` — a 3-stage pipeline (intake → analysis → draft) for consulting and professional deliverables. Includes CLAUDE.md, CONTEXT.md, PROGRESS.md, `_config/voice.md`, `_config/client-profile.md` (per-engagement template), stage contracts for all three stages, `stages/03_draft/references/deliverable-format.md`, and `setup/questionnaire-answers.md`.
+- Added `core/examples/research-synthesis/` — a 4-stage pipeline (collect → extract → synthesise → report) for literature review and research synthesis work. Includes CLAUDE.md, CONTEXT.md, PROGRESS.md, `_config/voice.md`, stage contracts for all four stages, `stages/04_report/references/report-structure.md`, and `setup/questionnaire-answers.md`.
+- Added `core/examples/client-deliverable/` — a 3-stage pipeline (intake → analysis → draft) for consulting and professional deliverables. Includes CLAUDE.md, CONTEXT.md, PROGRESS.md, `_config/voice.md`, `_config/client-profile.md` (per-engagement template), stage contracts for all three stages, `stages/03_draft/references/deliverable-format.md`, and `setup/questionnaire-answers.md`.
 - Added domain pointer note to questionnaire.md Group B: if the user's domain resembles an existing example, mention the relevant example path. No token cost — pointer only, not a load instruction.
 
 **Token impact:** Zero runtime overhead. Examples are never loaded automatically; they are consulted on demand only.
@@ -311,7 +326,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 1.4 — Stage contract validation after a pipeline run
 
-**Applied to:** `skill/anti-patterns.md`, `skill/review-checklist.md`
+**Applied to:** `core/anti-patterns.md`, `core/review-checklist.md`
 
 **What changed:**
 - Added IC-10 to anti-patterns.md: "Stage marked complete but Outputs contract not satisfied." Detects three failure cases for each stage PROGRESS.md shows as completed: (1) named output file absent from stated path, (2) file present but empty, (3) output/ contains files but none match the names the contract specifies.
@@ -328,7 +343,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### Fix — Proactive PROGRESS.md updates during sessions
 
-**Applied to:** `skill/templates/CLAUDE.md.template`, `skill/templates/PROGRESS.md.template`, `skill/examples/script-to-animation/CLAUDE.md`
+**Applied to:** `core/templates/CLAUDE.md.template`, `core/templates/PROGRESS.md.template`, `core/examples/script-to-animation/CLAUDE.md`
 
 **What changed:**
 - Added a 4th default rule to CLAUDE.md.template: "Update PROGRESS.md when completing a task, hitting a blocker, or moving to a new stage — do not wait for session end." This puts the instruction in CLAUDE.md (always read at task start), keeping it persistently in context throughout a session.
@@ -342,7 +357,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### Fix — Session resilience: recovery from interrupted sessions
 
-**Applied to:** `skill/questionnaire.md` (session-prompts.md content), `skill/templates/PROGRESS.md.template`, `skill/anti-patterns.md`, `skill/review-checklist.md`
+**Applied to:** `core/questionnaire.md` (session-prompts.md content), `core/templates/PROGRESS.md.template`, `core/anti-patterns.md`, `core/review-checklist.md`
 
 **What changed:**
 - Session-start prompt now checks actual `output/` directories against each stage's CONTEXT.md Outputs section, not just PROGRESS.md. Discrepancies are surfaced before proceeding, making recovery from interrupted sessions automatic at every session start.
@@ -356,7 +371,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 1.3 — Workspace upgrade path from simple 3-file setup
 
-**Applied to:** `skill/update-protocol.md`, `SKILL.md`
+**Applied to:** `core/update-protocol.md`, `SKILL.md`
 
 **What changed:**
 - Added "Upgrade 3-file workspace to staged structure" row to the common update types table in update-protocol.md
@@ -369,7 +384,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 1.2 — Session-start and session-end prompts in Setup output
 
-**Applied to:** `skill/questionnaire.md`
+**Applied to:** `core/questionnaire.md`
 
 **What changed:**
 - Added step 9 to "After confirmation": generate `setup/session-prompts.md` with three ready-to-use prompts (session start, session end, before stepping away)
@@ -381,7 +396,7 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ### 1.1 — Draft Layer 3 reference files during Setup
 
-**Applied to:** `skill/questionnaire.md`
+**Applied to:** `core/questionnaire.md`
 
 **What changed:**
 - Step 5 of "After confirmation" now instructs Claude to draft the content of any stage-specific reference files described in Group C Q4, rather than creating empty directories

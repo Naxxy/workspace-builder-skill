@@ -30,7 +30,7 @@ For full explanations of each issue — why it matters and how to fix it — see
 ### Passing: [N] of [total] checks
 ```
 
-4. Ask: "Do you want me to apply the recommended fixes?" If yes, read `skill/update-protocol.md` and apply changes one at a time, confirming before each.
+4. Ask: "Do you want me to apply the recommended fixes?" If yes, read `core/update-protocol.md` and apply changes one at a time, confirming before each.
 
 ---
 

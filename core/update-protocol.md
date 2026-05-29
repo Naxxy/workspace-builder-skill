@@ -27,7 +27,7 @@ Used by Mode 3 (Update). Defines how to apply changes to an existing workspace w
    Skip this step for non-structural updates (reference material changes, Process section edits, naming convention updates, rules changes, skills wiring).
 
 7. **Update `PROGRESS.md`** with what changed, why, and the current active stage if it changed.
-8. **Offer a Check.** Ask if they want a full audit of the affected files (read `skill/anti-patterns.md`).
+8. **Offer a Check.** Ask if they want a full audit of the affected files (read `core/anti-patterns.md`).
 
 ---
 
@@ -133,7 +133,7 @@ This is the most structurally significant update. Follow these steps in order:
 
 11. **Generate `setup/skill-version.md`** if not present — use the Skill build date from `SKILL.md` and the current feature flags (see questionnaire.md step 10 for the format).
 
-12. Run a full Check (read `skill/anti-patterns.md`) on the upgraded workspace.
+12. Run a full Check (read `core/anti-patterns.md`) on the upgraded workspace.
 
 ---
 

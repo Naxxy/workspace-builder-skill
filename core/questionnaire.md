@@ -67,9 +67,9 @@ Questions:
 - 5 is a maximum for a first build — suggest consolidating if the user lists more
 
 **If the user's domain resembles an existing example, mention it:**
-- Content/media production → `skill/examples/script-to-animation/`
-- Research, literature review, or synthesis work → `skill/examples/research-synthesis/`
-- Client or consulting deliverables → `skill/examples/client-deliverable/`
+- Content/media production → `core/examples/script-to-animation/`
+- Research, literature review, or synthesis work → `core/examples/research-synthesis/`
+- Client or consulting deliverables → `core/examples/client-deliverable/`
 
 ---
 
@@ -159,10 +159,10 @@ Do not proceed until the user confirms. If they correct something, update your u
 
 Generate the workspace in this order:
 
-1. Root `CLAUDE.md` (use `skill/templates/CLAUDE.md.template`). Populate the `## Identity` section: "You are [Q3 Claude identity] helping [Q1 name], a [Q2 role], [Q4 purpose/context]." Populate the Skills column in the routing table from Group C Q6: use the skill or tool name for stages that have one, `—` for all others.
-2. Root `CONTEXT.md` (use `skill/templates/CONTEXT.md.template`)
+1. Root `CLAUDE.md` (use `core/templates/CLAUDE.md.template`). Populate the `## Identity` section: "You are [Q3 Claude identity] helping [Q1 name], a [Q2 role], [Q4 purpose/context]." Populate the Skills column in the routing table from Group C Q6: use the skill or tool name for stages that have one, `—` for all others.
+2. Root `CONTEXT.md` (use `core/templates/CONTEXT.md.template`)
 3. `stages/` with numbered folders (`01_name/`, `02_name/`, etc.)
-4. Each stage `CONTEXT.md` with Inputs/Process/Outputs filled (use `skill/templates/stage-CONTEXT.md.template`)
+4. Each stage `CONTEXT.md` with Inputs/Process/Outputs filled (use `core/templates/stage-CONTEXT.md.template`)
 5. Each stage's `references/` and `output/` directories. For any stage-specific reference material described in Group C Q4, draft the file content from the user's description — do not leave it blank.
 6. `_config/` files, drafted from Group C answers:
    - **Group C Q1 (voice/style)** → `_config/voice.md`: draft Purpose, Voice/tone description, sentence-level conventions, what to avoid, and at least one concrete example of correct vs incorrect register if the user gave enough to work from.
@@ -170,9 +170,9 @@ Generate the workspace in this order:
    - **Group C Q3 (domain knowledge)** → `_config/domain.md` or equivalent: draft the key concepts, constraints, and domain-specific rules.
    - If the user described nothing for a given category, skip that file — do not create empty placeholders.
    - If the user gave a brief description, draft from it and mark any sections that need more detail with `[TO EXPAND]`.
-7. `PROGRESS.md` at root (use `skill/templates/PROGRESS.md.template`)
+7. `PROGRESS.md` at root (use `core/templates/PROGRESS.md.template`)
 8. `setup/questionnaire-answers.md` with the interview answers recorded
-9. `setup/session-prompts.md` — copy `skill/templates/session-prompts.md.template`
+9. `setup/session-prompts.md` — copy `core/templates/session-prompts.md.template`
 
 10. `setup/skill-version.md` — read the Skill build date from `SKILL.md` and generate:
 
@@ -188,10 +188,10 @@ session-prompts: yes                 — setup/session-prompts.md generated
 skills-column: yes                   — routing table includes Skills column
 progress-update-rule: yes            — CLAUDE.md Rules includes proactive PROGRESS.md update
 trace-mode: yes                      — Mode 5 (Trace) available
-preflight-tool: yes                  — skill/tools/preflight.sh available
-engineering-standards: yes           — skill/engineering-standards.md present
-tool-decision: yes                   — skill/tools/tool-decision.md present
-bash-style: yes                      — skill/tools/bash-style.md present
+preflight-tool: yes                  — core/tools/preflight.sh available
+engineering-standards: yes           — core/engineering-standards.md present
+tool-decision: yes                   — core/tools/tool-decision.md present
+bash-style: yes                      — core/tools/bash-style.md present
 ```
 
 (This file is a record, not a configuration. Future reviews use it to flag improvements added after this workspace was generated.)
@@ -200,8 +200,8 @@ bash-style: yes                      — skill/tools/bash-style.md present
 
 **Quality gates before confirming done:**
 
-Run `bash skill/tools/preflight.sh [workspace-path]` — this covers all mechanical checks.
-Then read `skill/anti-patterns.md` for the deferred checks (those requiring reading and judgment) only.
+Run `bash core/tools/preflight.sh [workspace-path]` — this covers all mechanical checks.
+Then read `core/anti-patterns.md` for the deferred checks (those requiring reading and judgment) only.
 
 If `preflight.sh` is not accessible, run these manually:
 - `CLAUDE.md` is under 50 lines
@@ -212,7 +212,7 @@ If `preflight.sh` is not accessible, run these manually:
 
 The completion report must include: the audit results, and the contents of `setup/session-prompts.md` so the user has the prompts immediately without opening another file.
 
-If the user wants to see a finished workspace for reference, point them to `skill/examples/script-to-animation/`.
+If the user wants to see a finished workspace for reference, point them to `core/examples/script-to-animation/`.
 
 ---
 
@@ -296,5 +296,5 @@ Generate in this order:
 8. `setup/questionnaire-answers.md` — document the duplication: source workspace, what was inherited, what was changed and why
 9. `setup/skill-version.md` — same format as the scratch path (Skill build date from `SKILL.md`, current feature flags)
 
-Apply the same quality gates as the scratch path, then run a full Check (read `skill/anti-patterns.md`). Include audit results and session prompts in the completion report.
+Apply the same quality gates as the scratch path, then run a full Check (read `core/anti-patterns.md`). Include audit results and session prompts in the completion report.
 

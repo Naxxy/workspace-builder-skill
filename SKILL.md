@@ -2,7 +2,7 @@
 
 A Claude Code skill for creating, reviewing, updating, and auditing ICM/MWP-compliant workspaces. Grounded in the Interpretable Context Methodology (Van Clief & McDermott): folder structure is agent architecture. A properly layered workspace gives a single orchestrating agent the context it needs at each stage — without a framework, without code, without server infrastructure.
 
-**Skill build:** 2026-05-25
+**Skill build:** 2026-05-29
 **After any significant change:** update the build date above and add an entry to `_design/CHANGELOG.md` (format: date → change ID → what changed → gap addressed).
 
 ---
@@ -24,15 +24,15 @@ Modes chain: Setup auto-runs Check. Review hands off to Update. Check hands off 
 ## Skill files
 
 ```
-skill/engineering-standards.md   Engineering standards applied in every mode
-skill/questionnaire.md           Mode 1: interview and generation workflow
-skill/review-checklist.md        Mode 2: checklist, report format, and procedure
-skill/anti-patterns.md           Modes 2 & 4: anti-pattern catalogue and audit procedure
-skill/update-protocol.md         Mode 3: change procedure and update type map
-skill/trace-protocol.md          Mode 5: pipeline trace procedure
-skill/templates/                 Generation templates (Mode 1 primary; REFERENCES.md.template also used in Mode 3)
-skill/examples/                  Reference workspace (consult on demand)
-skill/tools/                     Shell scripts and tooling guides (bash-style.md, tool-decision.md)
+core/engineering-standards.md   Engineering standards applied in every mode
+core/questionnaire.md           Mode 1: interview and generation workflow
+core/review-checklist.md        Mode 2: checklist, report format, and procedure
+core/anti-patterns.md           Modes 2 & 4: anti-pattern catalogue and audit procedure
+core/update-protocol.md         Mode 3: change procedure and update type map
+core/trace-protocol.md          Mode 5: pipeline trace procedure
+core/templates/                 Generation templates (Mode 1 primary; REFERENCES.md.template also used in Mode 3)
+core/examples/                  Reference workspace (consult on demand)
+core/tools/                     Shell scripts and tooling guides (bash-style.md, tool-decision.md)
 ```
 
 ---
@@ -97,14 +97,14 @@ skill/tools/                     Shell scripts and tooling guides (bash-style.md
 
 ## Modes
 
-**All modes:** Read `skill/engineering-standards.md` before proceeding.
+**All modes:** Read `core/engineering-standards.md` before proceeding.
 
-**Mode 1 — Setup:** Read `skill/questionnaire.md`.
+**Mode 1 — Setup:** Read `core/questionnaire.md`.
 
-**Mode 2 — Review:** Read `skill/review-checklist.md` and `skill/anti-patterns.md`.
+**Mode 2 — Review:** Read `core/review-checklist.md` and `core/anti-patterns.md`.
 
-**Mode 3 — Update:** Read `skill/update-protocol.md`.
+**Mode 3 — Update:** Read `core/update-protocol.md`.
 
-**Mode 4 — Check:** Read `skill/anti-patterns.md`.
+**Mode 4 — Check:** Read `core/anti-patterns.md`.
 
-**Mode 5 — Trace:** Read `skill/trace-protocol.md`.
+**Mode 5 — Trace:** Read `core/trace-protocol.md`.

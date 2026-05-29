@@ -2,10 +2,10 @@
 
 ## How to run a full audit (Mode 4)
 
-**If `skill/tools/preflight.sh` is accessible**, run it first:
+**If `core/tools/preflight.sh` is accessible**, run it first:
 
 ```bash
-bash skill/tools/preflight.sh [workspace-path]
+bash core/tools/preflight.sh [workspace-path]
 ```
 
 Read its output. Checks marked `PASS` are mechanically verified — skip them below.
@@ -39,7 +39,7 @@ the checks that require reading and judgment — run only those manually.
 ```
 
 5. If no findings, confirm the workspace is clean.
-6. Ask: "Do you want me to fix the Critical and Warning items?" If yes, read `skill/update-protocol.md` and apply fixes.
+6. Ask: "Do you want me to fix the Critical and Warning items?" If yes, read `core/update-protocol.md` and apply fixes.
 
 ---
 
@@ -202,7 +202,7 @@ Trigger phrases: "be concise", "be creative", "be professional", "think step by 
 - **`setup/questionnaire-answers.md` absent** — no record of why the workspace was structured this way. → Suggestion
 
 **Fix:**
-- `session-prompts.md`: generate it with the three standard prompts from `skill/questionnaire.md` step 9.
+- `session-prompts.md`: generate it with the three standard prompts from `core/questionnaire.md` step 9.
 - `skill-version.md`: create it manually noting the current skill build date from `SKILL.md` and which feature flags apply to this workspace's current state.
 - `questionnaire-answers.md`: cannot be retroactively generated accurately; note in PROGRESS.md that it is absent if the workspace history is important to preserve.
 

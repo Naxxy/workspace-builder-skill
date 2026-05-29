@@ -1,6 +1,6 @@
 # Bash Style Guide
 
-Applies when writing or modifying scripts in `skill/tools/`. Describes the conventions
+Applies when writing or modifying scripts in `core/tools/`. Describes the conventions
 already in use across `preflight.sh`, `audit-all.sh`, `diff-stage.sh`, and `reconcile-progress.sh`.
 
 ---

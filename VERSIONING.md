@@ -51,14 +51,14 @@ Tagger: Ashar Guglielmino
 tag v2026-05-21
 Tagger: Ashar Guglielmino
 
-- Added skill/engineering-standards.md: four universal behavioral principles
+- Added core/engineering-standards.md: four universal behavioral principles
   (Think Before Acting, Simplicity First, Surgical Changes, Goal-Driven Execution)
   applied to all modes
-- Added skill/tools/tool-decision.md: decision guide for scripting vs. Claude
+- Added core/tools/tool-decision.md: decision guide for scripting vs. Claude
   guidance vs. external tool, grounded in the determinism principle
-- Added skill/tools/bash-style.md: concise style guide codifying conventions
+- Added core/tools/bash-style.md: concise style guide codifying conventions
   from existing scripts
-- Extracted session-prompts content to skill/templates/session-prompts.md.template;
+- Extracted session-prompts content to core/templates/session-prompts.md.template;
   AP-12 now routes to Mode 5 (Trace) before Mode 3 when root cause is unclear
 - Skill build bumped to 2026-05-21
 ```

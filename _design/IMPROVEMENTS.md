@@ -34,7 +34,7 @@ When duplicating a workspace, the skill reads CLAUDE.md, CONTEXT.md, stage contr
 
 The exact session prompts content appears in: (1) questionnaire.md step 9 as the canonical template, (2) the PROGRESS.md.template comment, (3) all generated/example session-prompts.md files. If the prompts need updating (e.g., when reconcile-progress.sh path changes), all three must be updated manually.
 
-**Improvement idea:** Create `skill/templates/session-prompts.md.template` as the single source of truth. Setup generates from it. PROGRESS.md.template comment references it. Currently the duplication is manageable, but will become a maintenance burden if the prompts change frequently.
+**Improvement idea:** Create `core/templates/session-prompts.md.template` as the single source of truth. Setup generates from it. PROGRESS.md.template comment references it. Currently the duplication is manageable, but will become a maintenance burden if the prompts change frequently.
 
 ### E6: preflight.sh doesn't check for `setup/` directory itself
 
@@ -42,27 +42,27 @@ The VR checks (VR-1 through VR-3) check for individual files but not whether `se
 
 ### E7: L0-6 (AP-3) absent from preflight.sh — not automated and not deferred
 
-**Check:** L0-6 — "Every stage folder in the workspace has at least one corresponding row in the routing table" — mapped to AP-3 in `skill/review-checklist.md`.
+**Check:** L0-6 — "Every stage folder in the workspace has at least one corresponding row in the routing table" — mapped to AP-3 in `core/review-checklist.md`.
 
-**The gap:** This check exists in `skill/review-checklist.md` (Mode 2 / Review) but is absent from `skill/tools/preflight.sh` entirely — it appears neither in the automated check functions nor in the `Deferred to Claude` heredoc at the end of the script. This means it is silently skipped in Mode 4 (Check), even though it is mechanically verifiable.
+**The gap:** This check exists in `core/review-checklist.md` (Mode 2 / Review) but is absent from `core/tools/preflight.sh` entirely — it appears neither in the automated check functions nor in the `Deferred to Claude` heredoc at the end of the script. This means it is silently skipped in Mode 4 (Check), even though it is mechanically verifiable.
 
 **What the check does:** Cross-references the routing table rows in `CLAUDE.md` against the actual `stages/` subdirectory names. Detects two failure modes: (1) a stage folder exists with no routing row — the orchestrator can't find it; (2) a routing row points to a folder that doesn't exist — a dead route.
 
-**How to fix:** In `preflight.sh`, add a function (e.g. `check_routing_coverage`) that: (a) extracts stage folder names from `stages/` directory listing, (b) reads the routing table rows from `CLAUDE.md`, (c) cross-references both directions, (d) emits `FAIL [L0-6]` for any stage folder with no routing row, and `FAIL [L0-6]` for any routing row pointing to a non-existent folder. Wire it into `main()` after `check_claude_md`. Use the same `pass/fail/warn/note` helper functions already in the script. Follow `skill/tools/bash-style.md` conventions throughout.
+**How to fix:** In `preflight.sh`, add a function (e.g. `check_routing_coverage`) that: (a) extracts stage folder names from `stages/` directory listing, (b) reads the routing table rows from `CLAUDE.md`, (c) cross-references both directions, (d) emits `FAIL [L0-6]` for any stage folder with no routing row, and `FAIL [L0-6]` for any routing row pointing to a non-existent folder. Wire it into `main()` after `check_claude_md`. Use the same `pass/fail/warn/note` helper functions already in the script. Follow `core/tools/bash-style.md` conventions throughout.
 
-**Files to change:** `skill/tools/preflight.sh` only. No changes to review-checklist.md or anti-patterns.md — the check is already correctly defined there.
+**Files to change:** `core/tools/preflight.sh` only. No changes to review-checklist.md or anti-patterns.md — the check is already correctly defined there.
 
 ### E8: L1-6 (AP-1) absent from preflight.sh — not automated and not deferred
 
-**Check:** L1-6 — "File is one page or less" (applied to root `CONTEXT.md`) — mapped to AP-1 in `skill/review-checklist.md`.
+**Check:** L1-6 — "File is one page or less" (applied to root `CONTEXT.md`) — mapped to AP-1 in `core/review-checklist.md`.
 
-**The gap:** Same class of issue as E7. L1-6 exists in `skill/review-checklist.md` but is absent from `skill/tools/preflight.sh` — neither automated nor in the deferred list. AP-1 (CLAUDE.md > 50 lines) is in preflight but the equivalent check for CONTEXT.md length is not.
+**The gap:** Same class of issue as E7. L1-6 exists in `core/review-checklist.md` but is absent from `core/tools/preflight.sh` — neither automated nor in the deferred list. AP-1 (CLAUDE.md > 50 lines) is in preflight but the equivalent check for CONTEXT.md length is not.
 
 **What the check does:** Flags root `CONTEXT.md` files that have grown beyond one page (~50 lines is the working threshold used for CLAUDE.md in AP-1/L0-2; apply the same). A CONTEXT.md that has grown to multiple pages has accumulated project-brief content that belongs elsewhere, degrading Layer 1's role as a concise routing layer.
 
 **How to fix:** In `preflight.sh`, inside the existing `check_context_md` function (which already checks that CONTEXT.md exists and is readable), add a line-count check: if `wc -l < CONTEXT.md` exceeds the threshold (suggest 60 lines, giving more headroom than CLAUDE.md's 50 given CONTEXT.md's broader scope), emit `warn 'L1-6' "CONTEXT.md exceeds one page — check for project detail that belongs in stage files (AP-1)"`. No new function needed — it slots directly into the existing function.
 
-**Files to change:** `skill/tools/preflight.sh` only. No changes to review-checklist.md or anti-patterns.md.
+**Files to change:** `core/tools/preflight.sh` only. No changes to review-checklist.md or anti-patterns.md.
 
 ---
 

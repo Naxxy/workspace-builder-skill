@@ -68,7 +68,7 @@ Modes chain: Setup auto-runs Check. Review hands off to Update. Check hands off 
 Clone or copy this repository. In your workspace's `CLAUDE.md`, add an entry to the routing table pointing to `SKILL.md`:
 
 ```markdown
-| Build or review a workspace | skill/workspace-builder/ | SKILL.md |
+| Build or review a workspace | skills/workspace-builder/ | SKILL.md |
 ```
 
 Or invoke it directly in a session by asking Claude to read `SKILL.md`.
@@ -118,14 +118,14 @@ It confirms a summary before generating anything. The output is a complete works
 ```
 SKILL.md                             Entry point — mode detection and skill index
 
-skill/engineering-standards.md       Universal behavioral principles (all modes)
-skill/questionnaire.md               Mode 1: interview and generation workflow
-skill/review-checklist.md            Mode 2: layer-by-layer assessment checklist
-skill/anti-patterns.md               Modes 2 & 4: anti-pattern catalogue and audit procedure
-skill/update-protocol.md             Mode 3: change procedure and update type map
-skill/trace-protocol.md              Mode 5: pipeline trace procedure
+core/engineering-standards.md       Universal behavioral principles (all modes)
+core/questionnaire.md               Mode 1: interview and generation workflow
+core/review-checklist.md            Mode 2: layer-by-layer assessment checklist
+core/anti-patterns.md               Modes 2 & 4: anti-pattern catalogue and audit procedure
+core/update-protocol.md             Mode 3: change procedure and update type map
+core/trace-protocol.md              Mode 5: pipeline trace procedure
 
-skill/templates/                     Generation templates
+core/templates/                     Generation templates
   CLAUDE.md.template
   CONTEXT.md.template
   stage-CONTEXT.md.template
@@ -134,7 +134,7 @@ skill/templates/                     Generation templates
   session-history.md.template
   session-prompts.md.template
 
-skill/tools/                         Shell scripts and tooling guides
+core/tools/                         Shell scripts and tooling guides
   preflight.sh                       Mechanical workspace checks (PASS/FAIL/NOTE output)
   audit-all.sh                       Batch audit across multiple workspaces
   diff-stage.sh                      Compare stage output before and after a contract change
@@ -142,7 +142,7 @@ skill/tools/                         Shell scripts and tooling guides
   bash-style.md                      Style guide for scripts in this skill
   tool-decision.md                   When to write a script vs. Claude guidance vs. external tool
 
-skill/examples/                      Reference workspaces (consult on demand)
+core/examples/                      Reference workspaces (consult on demand)
   script-to-animation/
   research-synthesis/
   client-deliverable/
@@ -152,10 +152,10 @@ skill/examples/                      Reference workspaces (consult on demand)
 
 ## The mechanical audit tool
 
-`skill/tools/preflight.sh` runs all checks that can be determined without reading and interpreting content — file existence, line counts, routing table validity, stage contract completeness, cross-stage filename matching, output contract satisfaction, and session state consistency.
+`core/tools/preflight.sh` runs all checks that can be determined without reading and interpreting content — file existence, line counts, routing table validity, stage contract completeness, cross-stage filename matching, output contract satisfaction, and session state consistency.
 
 ```bash
-bash skill/tools/preflight.sh [workspace-path]
+bash core/tools/preflight.sh [workspace-path]
 ```
 
 Output uses `PASS / FAIL / NOTE` prefixes with check IDs that map directly to `review-checklist.md`. The script ends with a `Deferred to Claude` section listing the checks that require judgment — so Claude only reads what the script cannot handle.
@@ -163,7 +163,7 @@ Output uses `PASS / FAIL / NOTE` prefixes with check IDs that map directly to `r
 For multiple workspaces:
 
 ```bash
-bash skill/tools/audit-all.sh [parent-directory]
+bash core/tools/audit-all.sh [parent-directory]
 ```
 
 ---
@@ -177,7 +177,7 @@ All modes apply four behavioral principles drawn from Karpathy's CLAUDE.md templ
 3. **Surgical Changes** — touch only what the request requires, flag but don't fix unrelated issues
 4. **Goal-Driven Execution** — state success criteria upfront, verify before declaring done
 
-These live in `skill/engineering-standards.md` and are loaded before every mode.
+These live in `core/engineering-standards.md` and are loaded before every mode.
 
 ---
 

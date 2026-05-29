@@ -82,5 +82,5 @@ the model. Scripts call scripts. Don't merge them.
 
 ## Register new scripts in SKILL.md
 
-Every new script added to `skill/tools/` must appear in the Skill files table in `SKILL.md`
+Every new script added to `core/tools/` must appear in the Skill files table in `SKILL.md`
 with a description of what it does and when to use it.
