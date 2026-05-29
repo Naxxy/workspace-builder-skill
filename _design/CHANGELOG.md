@@ -19,6 +19,50 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ---
 
+## 2026-05-28
+
+### Fix — Versioning file and bash-style clarification (pre-existing untagged)
+
+**Applied to:** `VERSIONING.md` (new), `skill/tools/bash-style.md`
+
+**What changed:**
+- Created `VERSIONING.md` — documents the date-based annotated tag convention (`v{YYYY-MM-DD}`), annotated-vs-lightweight distinction, tag message format (past-tense bullet list), the review-before-push rule, and a commands reference.
+- Updated `skill/tools/bash-style.md`: clarified that large functions may be split into smaller focused functions; previously implied all functions must be single-block.
+
+---
+
+### 6 — Commit and changelog standards
+
+**Applied to:** `skill/engineering-standards.md`
+
+**What changed:**
+- Added Section 6 "Commit and Changelog Standards" to `skill/engineering-standards.md`. Every session that changes files must produce small, independent, readable commits and a `CHANGELOG.md` entry. Defines: one-logical-change-per-commit rule, commit message format (imperative subject ≤72 chars, why-body, co-author line), selective staging rule (`git add <file>` not `git add -A`), submodule pointer commits as their own separate commit, and `CHANGELOG.md` entry format with required vs. not-required categories.
+
+**Gap addressed:** No standard existed for how workspace changes should be committed. Sessions produced inconsistent commit history — some changes bundled, some atomic, commit messages describing what not why. The CHANGELOG.md format and update timing were undefined.
+
+---
+
+### 7 — Task-driven change management
+
+**Applied to:** `skill/engineering-standards.md`, `skill/task-protocol.md` (new)
+
+**What changed:**
+- Added Section 7 "Task-Driven Change Management" to `skill/engineering-standards.md`: brief universal principle that non-trivial changes should be written to a task file (`setup/TASKS.md`) before being applied, each with a concrete success criterion. Points to `skill/task-protocol.md` for the full procedure.
+- Created `skill/task-protocol.md`: full protocol covering task format (required fields: size, parallel-safe, files to read/edit, success criterion, pre-written changelog entry), size guide (small/medium/large with agent guidance per tier), coordinator agent wave-based execution procedure (dependency grouping, direct vs sub-agent decision, git worktree lifecycle for parallel large tasks), the four-condition task close (verify → changelog → remove from TASKS.md → commit), sub-agent context block template, what makes a good vs bad success criterion, and when not to use sub-agents.
+
+**Gap addressed:** No structured pattern existed for deferring changes to a later session or applying multiple changes in a controlled, potentially parallel way. Changes were applied immediately or informally noted in conversation. This protocol enables a coordinator agent to read TASKS.md cold, build an execution plan, and apply changes with or without sub-agents.
+
+---
+
+### Fix — Rename task file convention from tasks.md to TASKS.md
+
+**Applied to:** `skill/engineering-standards.md`, `skill/task-protocol.md`
+
+**What changed:**
+- Renamed all references to the task backlog file from `tasks.md` / `setup/tasks.md` to `TASKS.md` / `setup/TASKS.md` to match the uppercase convention used by `CHANGELOG.md` and `README.md`.
+
+---
+
 ## 2026-05-25
 
 ### Fix — Safe deletion rule: prohibit `rm -rf` globally
