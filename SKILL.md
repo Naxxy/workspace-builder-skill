@@ -29,6 +29,7 @@ core/questionnaire.md           Mode 1: interview and generation workflow
 core/review-checklist.md        Mode 2: checklist, report format, and procedure
 core/anti-patterns.md           Modes 2 & 4: anti-pattern catalogue and audit procedure
 core/update-protocol.md         Mode 3: change procedure and update type map
+core/task-protocol.md           Task format, coordinator procedure, and sub-agent guidance (Engineering Standard 7)
 core/trace-protocol.md          Mode 5: pipeline trace procedure
 core/templates/                 Generation templates (Mode 1 primary; REFERENCES.md.template also used in Mode 3)
 core/examples/                  Reference workspace (consult on demand)

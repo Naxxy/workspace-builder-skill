@@ -6,6 +6,17 @@ Completed improvements to the workspace-builder skill, most recent first.
 
 ## 2026-05-29
 
+### Fix — Self-audit: add `core/task-protocol.md` to SKILL.md file listing
+
+**Applied to:** `SKILL.md`
+
+**What changed:**
+- Added `core/task-protocol.md` to the Skill files table in `SKILL.md`. The file existed and was referenced from `core/engineering-standards.md` Section 7 ("Read `core/task-protocol.md` for the full format, coordinator procedure, and sub-agent guidance"), but was absent from SKILL.md's authoritative file listing. An agent consulting SKILL.md would not know the file exists unless it happened to read engineering-standards.md first.
+
+**Gap addressed:** Missing file listing meant `core/task-protocol.md` was invisible at the entry-point level. The Skill files table is the canonical map of what the skill contains — every core file should appear in it.
+
+---
+
 ### Fix — Rename `skill/` directory to `core/`
 
 **Applied to:** `skill/` → `core/` (rename), `SKILL.md`, `README.md`, `VERSIONING.md`, all files under `core/` that referenced `skill/`, `_design/CHANGELOG.md`, `_design/IMPROVEMENTS.md`
