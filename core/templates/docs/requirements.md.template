@@ -1,0 +1,81 @@
+# Workspace Portability Requirements
+
+**Workspace:** [WORKSPACE_NAME]
+**Last updated:** [DATE]
+
+This file documents everything needed to reproduce this workspace's working environment on a new machine.
+
+---
+
+## Workspace path
+
+This workspace **must** be cloned to the following exact path:
+
+```
+[ABSOLUTE_WORKSPACE_PATH]
+```
+
+**Why:** The `skills/` directory contains relative symlinks (`[RELATIVE_SYMLINK_PATH]`). If the workspace is placed at a different path, all symlinks will break and skills will be unavailable.
+
+---
+
+## Required software
+
+| Software | Purpose | Install command |
+|----------|---------|-----------------|
+| Claude Code CLI | Running the workspace | `npm install -g @anthropic-ai/claude-code` |
+| git | Version control | System package manager (e.g. `brew install git` or `apt install git`) |
+
+---
+
+## External dependencies
+
+The following directories outside the workspace must exist before the workspace will function correctly. They are **not** included in this repository.
+
+| Path | Contents | How to restore |
+|------|----------|---------------|
+| [EXTERNAL_DEP_PATH] | [DESCRIPTION] | [RESTORE_COMMAND_OR_INSTRUCTIONS] |
+
+---
+
+## Symlink map
+
+The `skills/` directory contains symlinks that resolve to skill directories outside the workspace.
+
+| Link path (in repo) | Symlink target | Target contents | How to restore target |
+|--------------------|---------------|-----------------|----------------------|
+| `skills/[SKILL_NAME]` | `[TARGET_PATH]` | [SKILL_DESCRIPTION] | `git clone [CLONE_URL] [TARGET_PATH]` |
+
+---
+
+## Setup steps
+
+Run these commands in order on a new machine to reproduce the full working environment.
+
+```bash
+# 1. Create required base directory structure
+mkdir -p [BASE_DIR]/skills
+mkdir -p [BASE_DIR]/workspaces
+
+# 2. Clone skill dependencies (symlink targets must exist before cloning the workspace)
+# [SKILL_NAME]
+git clone [CLONE_URL] [TARGET_PATH]
+
+# 3. Clone the workspace to the exact required path
+git clone [WORKSPACE_REMOTE_URL] [ABSOLUTE_WORKSPACE_PATH]
+
+# 4. Validate symlinks resolve correctly
+ls -la [ABSOLUTE_WORKSPACE_PATH]/skills/
+# Should show symlinks — no "No such file or directory" errors
+```
+
+---
+
+## Validation checklist
+
+Run these checks after setup to confirm the environment is working:
+
+- [ ] All external dependency paths exist and are non-empty
+- [ ] All symlinks in `skills/` resolve without errors (`ls -la skills/`)
+- [ ] Each symlink target contains the expected skill files
+- [ ] Claude Code can open the workspace: `cd [ABSOLUTE_WORKSPACE_PATH] && claude`

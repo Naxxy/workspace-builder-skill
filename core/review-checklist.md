@@ -159,3 +159,15 @@ These checks detect setup artifacts from the generation process. Their absence i
 | VR-2 | `setup/skill-version.md` exists — workspace has a generation record for version tracking | AP-11 |
 | VR-3 | `setup/questionnaire-answers.md` exists — records why the workspace was structured this way | AP-11 |
 
+---
+
+## Portability check
+
+| # | Check | Fail → Action |
+|---|-------|--------------|
+| PC-1 | `docs/requirements.md` exists | Create it using the template at `core/templates/docs/requirements.md.template` |
+| PC-2 | `docs/requirements.md` lists all symlinks that exist in the workspace | Add any missing symlinks with their target paths |
+| PC-3 | `docs/requirements.md` lists all required software with install commands | Fill in missing software entries |
+| PC-4 | `docs/requirements.md` includes a step-by-step setup section | Add ordered setup commands |
+| PC-5 | `docs/requirements.md` includes a validation checklist | Add checklist items for each critical dependency |
+

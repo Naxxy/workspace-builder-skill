@@ -152,3 +152,14 @@ This is the most structurally significant update. Follow these steps in order:
 ## After completing an update
 
 Update `PROGRESS.md` — include what the current active stage is if it changed.
+
+---
+
+## Portability requirements check
+
+When **creating a new workspace** (Mode 1) or performing a **major audit** (Mode 4 with structural findings), check whether `docs/requirements.md` exists.
+
+- **If it does not exist:** Offer to create it using the template at `core/templates/docs/requirements.md.template`. Fill in the workspace path, symlink map, required software, setup steps, and validation checklist based on what you find in the workspace.
+- **If it exists but is incomplete:** Flag any missing sections (symlinks not listed, software without install commands, no setup steps, no validation checklist) and offer to fill them in.
+
+This check is not required for routine updates (reference material changes, Process section edits, output file changes).
